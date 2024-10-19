@@ -1,0 +1,13 @@
+.conferenceInner {
+  display: flex;
+  height: 100%;
+  flex-wrap: wrap;
+}
+
+.flex {
+  flex: 1 1 360px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
