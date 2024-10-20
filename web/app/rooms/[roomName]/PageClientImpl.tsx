@@ -145,15 +145,14 @@ export function PageClientImpl(props: {
           onSubmit={handleUploadInfo}
           style={{ display: 'grid', placeItems: 'center', height: '100%' }}
         >
-          <div>
+          <div className={styles.uploadcv}>
             <h1>Welcome to Your Interview Assistant!</h1>
             <p>
-              To help you prepare effectively, we need a little information from you. Please share
-              the following:
+              To help you prepare effectively, we need a little information from you. Please share your CV and the Job Description of the role you are applying to.
             </p>
             <p style={{ fontWeight: '600' }}>Upload your CV here: </p>
             <input type="file" onChange={onFileChange}></input>
-            <p style={{ fontWeight: '600' }}>Enter job description here: </p>
+            <p style={{ fontWeight: '600' }}>Enter Job Description here: </p>
             <textarea
               className={styles.textarea}
               value={jobDescription}
