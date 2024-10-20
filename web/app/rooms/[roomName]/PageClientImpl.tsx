@@ -49,6 +49,7 @@ export function PageClientImpl(props: {
   const [resume, setResume] = React.useState('');
   const [jobDescription, setJobDescription] = React.useState<string>('');
   const [instructions, setInstructions] = React.useState('');
+
   const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target?.files?.[0];
     if (!file) {
@@ -97,6 +98,8 @@ export function PageClientImpl(props: {
     Cultural Fit: Questions that determine how well the candidate aligns with the company’s values and work environment.
     Problem-Solving and Critical Thinking: Questions that assess the candidate’s approach to challenges and their ability to think critically in relevant scenarios.
     Behavioral Questions: Questions based on the candidate's previous experiences to understand their behavior in various situations.
+
+    Now you are the interviewer and I am the interviewee. Please start by giving a welcome and ask the interviewee to introduce themselves.
     `);
   };
 
