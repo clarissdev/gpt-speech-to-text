@@ -49,7 +49,6 @@ export function PageClientImpl(props: {
   const [resume, setResume] = React.useState('');
   const [jobDescription, setJobDescription] = React.useState<string>('');
   const [instructions, setInstructions] = React.useState('');
-
   const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target?.files?.[0];
     if (!file) {
@@ -87,9 +86,18 @@ export function PageClientImpl(props: {
       alert('Your CV or job description is lacking content.');
       return;
     }
-    setInstructions(`You are an interviewer for a job position. Please analyze the following resume and job description to conduct a realistic interview simulation.
+    setInstructions(`You are an AI assistant tasked with generating interview questions for a candidate based on their resume and a specific job description.
     Resume: ${resume}
-    Job Description: ${jobDescription}`);
+    Job Description: ${jobDescription}
+
+    Please analyze the resume and job description to create a set of tailored interview questions that assess the candidate's qualifications, skills, and experiences relevant to the role. Focus on the following areas:
+
+    Technical Skills: Questions that evaluate the candidate’s specific technical abilities mentioned in the resume.
+    Experience: Questions that explore the candidate’s past work experiences and achievements related to the job description.
+    Cultural Fit: Questions that determine how well the candidate aligns with the company’s values and work environment.
+    Problem-Solving and Critical Thinking: Questions that assess the candidate’s approach to challenges and their ability to think critically in relevant scenarios.
+    Behavioral Questions: Questions based on the candidate's previous experiences to understand their behavior in various situations.
+    `);
   };
 
   const preJoinDefaults = React.useMemo(() => {
