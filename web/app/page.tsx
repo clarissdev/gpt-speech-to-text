@@ -18,7 +18,7 @@ function DemoMeetingTab() {
   };
   return (
     <div className={styles.tabContent}>
-      <p style={{ margin: 0 }}>Try for free with our demo.</p>
+      <p>Try for free with our demo.</p>
       <button style={{ marginTop: '1rem' }} className="lk-button" onClick={startMeeting}>
         Start Meeting
       </button>
@@ -53,7 +53,7 @@ export default function Page() {
     <>
       <main className={styles.main} data-lk-theme="default">
         <div className="header">
-          <h1 style={{ textAlign: 'center' }}>Practice Interview with AI</h1>
+          <h1>Practice Interview with AI</h1>
           <h2>Prepare for your next interview with our interactive platform!</h2>
         </div>
         <Suspense fallback="Loading">

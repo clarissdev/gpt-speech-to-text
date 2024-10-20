@@ -3,8 +3,9 @@
 }
 
 html {
-  color-scheme: dark;
-  background-color: #111;
+  /* color-scheme: dark; */
+  color-scheme: light;
+  /* background-color: #FFFFFF; */
 }
 
 html,
@@ -31,6 +32,11 @@ body {
   max-width: 100%;
 }
 
+.header > h1 {
+  text-align: center;
+  color: #111;
+}
+
 .header > h2 {
   font-family: 'TWK Everett', sans-serif;
   font-style: normal;
@@ -38,7 +44,8 @@ body {
   font-size: 1.25rem;
   line-height: 144%;
   text-align: center;
-  color: rgba(255, 255, 255, 0.6);
+  /* color: rgba(255, 255, 255, 0.6); */
+  color: #111;
 }
 
 footer {
@@ -46,8 +53,10 @@ footer {
   padding: 1.5rem 2rem;
   text-align: center;
   color: rgba(255, 255, 255, 0.6);
+  /* color: #111; */
   background-color: var(--lk-bg);
   border-top: 1px solid rgba(255, 255, 255, 0.15);
+  /* border-top: 1px solid #111; */
 }
 
 footer a,
