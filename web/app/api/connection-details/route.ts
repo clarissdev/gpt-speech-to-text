@@ -7,13 +7,10 @@ const API_KEY = process.env.LIVEKIT_API_KEY;
 const API_SECRET = process.env.LIVEKIT_API_SECRET;
 const LIVEKIT_URL = process.env.LIVEKIT_URL;
 
-export async function GET(request: NextRequest) {
+export async function POST(request: NextRequest) {
   try {
     // Parse query parameters
-    const roomName = request.nextUrl.searchParams.get('roomName');
-    const participantName = request.nextUrl.searchParams.get('participantName');
-    const metadata = request.nextUrl.searchParams.get('metadata') ?? '';
-    const region = request.nextUrl.searchParams.get('region');
+    const { roomName, participantName, region, metadata } = await request.json();
     const livekitServerUrl = region ? getLiveKitURL(region) : LIVEKIT_URL;
     if (livekitServerUrl === undefined) {
       throw new Error('Invalid region');
@@ -25,22 +22,28 @@ export async function GET(request: NextRequest) {
     if (participantName === null) {
       return new NextResponse('Missing required query parameter: participantName', { status: 400 });
     }
-
     // Generate participant token
-    const participantToken = await createParticipantToken(
-      {
-        identity: `${participantName}__${randomString(4)}`,
-        name: participantName,
-        metadata,
-      },
-      roomName,
-    );
+    const at = new AccessToken(API_KEY, API_SECRET, {
+      identity: `${participantName}__${randomString(4)}`,
+      name: participantName,
+      metadata: JSON.stringify(metadata),
+    });
+    at.ttl = '30m';
+    const grant: VideoGrant = {
+      room: roomName,
+      roomJoin: true,
+      canPublish: true,
+      canPublishData: true,
+      canSubscribe: true,
+      canUpdateOwnMetadata: true,
+    };
+    at.addGrant(grant);
 
     // Return connection details
     const data: ConnectionDetails = {
       serverUrl: livekitServerUrl,
       roomName: roomName,
-      participantToken: participantToken,
+      participantToken: await at.toJwt(),
       participantName: participantName,
     };
     return NextResponse.json(data);
@@ -50,21 +53,6 @@ export async function GET(request: NextRequest) {
     }
   }
 }
-
-function createParticipantToken(userInfo: AccessTokenOptions, roomName: string) {
-  const at = new AccessToken(API_KEY, API_SECRET, userInfo);
-  at.ttl = '5m';
-  const grant: VideoGrant = {
-    room: roomName,
-    roomJoin: true,
-    canPublish: true,
-    canPublishData: true,
-    canSubscribe: true,
-  };
-  at.addGrant(grant);
-  return at.toJwt();
-}
-
 /**
  * Get the LiveKit server URL for the given region.
  */
