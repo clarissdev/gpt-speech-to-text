@@ -114,7 +114,7 @@ export function PageClientImpl(props: {
     undefined,
   );
 
-  const handlePreJoinSubmit = React.useCallback(async (values: LocalUserChoices) => {
+  const handlePreJoinSubmit = async (values: LocalUserChoices) => {
     setPreJoinChoices(values);
     const openaiApiKey = process.env.NEXT_PUBLIC_OPEN_AI_KEY;
     const url = new URL(CONN_DETAILS_ENDPOINT, window.location.origin);
@@ -135,7 +135,7 @@ export function PageClientImpl(props: {
     });
     const connectionDetailsData = await connectionDetailsResp.json();
     setConnectionDetails(connectionDetailsData);
-  }, []);
+  };
   const handlePreJoinError = React.useCallback((e: any) => console.error(e), []);
 
   return (
