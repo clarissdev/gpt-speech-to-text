@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
       name: participantName,
       metadata: JSON.stringify(metadata),
     });
-    at.ttl = '30m';
+    at.ttl = '60m';
     const grant: VideoGrant = {
       room: roomName,
       roomJoin: true,
