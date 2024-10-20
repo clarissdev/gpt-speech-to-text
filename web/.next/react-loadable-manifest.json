@@ -1,8 +1,0 @@
-{
-  "node_modules/.pnpm/@livekit+components-react@2.6.5_@livekit+krisp-noise-filter@0.2.12_livekit-client@2.5.9__live_lav6gyb7z663jxlneix5psepey/node_modules/@livekit/components-react/dist/krisp.mjs -> @livekit/krisp-noise-filter": {
-    "id": "node_modules/.pnpm/@livekit+components-react@2.6.5_@livekit+krisp-noise-filter@0.2.12_livekit-client@2.5.9__live_lav6gyb7z663jxlneix5psepey/node_modules/@livekit/components-react/dist/krisp.mjs -> @livekit/krisp-noise-filter",
-    "files": [
-      "static/chunks/_app-pages-browser_node_modules_pnpm_livekit_krisp-noise-filter_0_2_12_livekit-client_2_5_9_n-26f724.js"
-    ]
-  }
-}

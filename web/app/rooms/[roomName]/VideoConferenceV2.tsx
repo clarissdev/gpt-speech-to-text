@@ -125,22 +125,10 @@ export function VideoConferenceV2({
         >
           <div className="lk-video-conference-inner">
             {!focusTrack ? (
-              <div className={styles.conferenceInner}>
-                <div className={styles.flex}>
-                  <GridLayout tracks={tracks}>
-                    <ParticipantTile />
-                  </GridLayout>
-                </div>
-                <div className={styles.flex}>
-                  <div
-                    style={{
-                      width: '100%',
-                      height: '320px',
-                    }}
-                  >
-                    <BarVisualizer state={state} barCount={5} trackRef={audioTrack} />
-                  </div>
-                </div>
+              <div className="lk-grid-layout-wrapper">
+                <GridLayout tracks={tracks}>
+                  <ParticipantTile />
+                </GridLayout>
               </div>
             ) : (
               <div className="lk-focus-layout-wrapper">
