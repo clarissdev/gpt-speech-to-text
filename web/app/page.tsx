@@ -1,20 +1,16 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import React, { Suspense, useState } from 'react';
-import { encodePassphrase, generateRoomId, randomString } from '@/lib/client-utils';
+import React, { Suspense } from 'react';
+
 import styles from '../styles/Home.module.css';
+
+import { generateRoomId } from '@/lib/client-utils';
 
 function DemoMeetingTab() {
   const router = useRouter();
-  const [e2ee, setE2ee] = useState(false);
-  const [sharedPassphrase, setSharedPassphrase] = useState(randomString(64));
   const startMeeting = () => {
-    if (e2ee) {
-      router.push(`/rooms/${generateRoomId()}#${encodePassphrase(sharedPassphrase)}`);
-    } else {
-      router.push(`/rooms/${generateRoomId()}`);
-    }
+    router.push(`/rooms/${generateRoomId()}`);
   };
   return (
     <div className={styles.tabContent}>
