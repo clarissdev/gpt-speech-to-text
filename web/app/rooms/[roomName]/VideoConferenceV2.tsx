@@ -1,5 +1,5 @@
+import { isEqualTrackRef, isTrackReference, isWeb, log } from '@livekit/components-core';
 import {
-  BarVisualizer,
   CarouselLayout,
   Chat,
   ConnectionStateToast,
@@ -16,12 +16,10 @@ import {
   useCreateLayoutContext,
   usePinnedTracks,
   useTracks,
-  useVoiceAssistant,
 } from '@livekit/components-react';
 import { Track, RoomEvent } from 'livekit-client';
 import React from 'react';
-import { isEqualTrackRef, isTrackReference, isWeb, log } from '@livekit/components-core';
-import styles from './VideoConferenceV2.module.scss';
+
 /**
  * The `VideoConference` ready-made component is your drop-in solution for a classic video conferencing application.
  * It provides functionality such as focusing on one participant, grid view with pagination to handle large numbers
@@ -53,7 +51,6 @@ export function VideoConferenceV2({
     showSettings: false,
   });
   const lastAutoFocusedScreenShareTrack = React.useRef<TrackReferenceOrPlaceholder | null>(null);
-  const { audioTrack, state } = useVoiceAssistant();
   const tracks = useTracks(
     [
       { source: Track.Source.Camera, withPlaceholder: true },

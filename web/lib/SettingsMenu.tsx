@@ -1,6 +1,4 @@
 'use client';
-import * as React from 'react';
-import { Track } from 'livekit-client';
 import {
   useMaybeLayoutContext,
   MediaDeviceMenu,
@@ -9,6 +7,9 @@ import {
   useIsRecording,
 } from '@livekit/components-react';
 import { useKrispNoiseFilter } from '@livekit/components-react/krisp';
+import { Track } from 'livekit-client';
+import * as React from 'react';
+
 import styles from '../styles/SettingsMenu.module.css';
 
 /**
@@ -71,8 +72,7 @@ export function SettingsMenu(props: SettingsMenuProps) {
     } else {
       response = await fetch(recordingEndpoint + `/start?roomName=${room.name}`);
     }
-    if (response.ok) {
-    } else {
+    if (!response.ok) {
       console.error(
         'Error handling recording request, check server logs:',
         response.status,
@@ -94,10 +94,7 @@ export function SettingsMenu(props: SettingsMenuProps) {
                 onClick={() => setActiveTab(tab)}
                 aria-pressed={tab === activeTab}
               >
-                {
-                  // @ts-ignore
-                  settings[tab].label
-                }
+                {settings[tab]?.label}
               </button>
             ),
         )}

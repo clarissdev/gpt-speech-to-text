@@ -1,14 +1,5 @@
 'use client';
 
-import { decodePassphrase } from '@/lib/client-utils';
-import { DebugMode } from '@/lib/Debug';
-import { RecordingIndicator } from '@/lib/RecordingIndicator';
-import { SettingsMenu } from '@/lib/SettingsMenu';
-import { ConnectionDetails } from '@/lib/types';
-import styles from './PageClientImpl.module.scss';
-
-import extractTextFromPdf from 'pdf-parser-client-side';
-
 import {
   formatChatMessageLinks,
   LiveKitRoom,
@@ -25,9 +16,17 @@ import {
   RoomConnectOptions,
 } from 'livekit-client';
 import { useRouter } from 'next/navigation';
+import extractTextFromPdf from 'pdf-parser-client-side';
 import React from 'react';
+
+import styles from './PageClientImpl.module.scss';
+import { ConnectionProvider } from './use-connection';
 import { VideoConferenceV2 } from './VideoConferenceV2';
-import { ConnectionProvider, useConnection } from './use-connection';
+
+import { decodePassphrase } from '@/lib/client-utils';
+import { RecordingIndicator } from '@/lib/RecordingIndicator';
+import { SettingsMenu } from '@/lib/SettingsMenu';
+import { ConnectionDetails } from '@/lib/types';
 
 const CONN_DETAILS_ENDPOINT =
   process.env.NEXT_PUBLIC_CONN_DETAILS_ENDPOINT ?? '/api/connection-details';
@@ -110,6 +109,7 @@ export function PageClientImpl(props: {
     const connectionDetailsData = await connectionDetailsResp.json();
     setConnectionDetails(connectionDetailsData);
   };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handlePreJoinError = React.useCallback((e: any) => console.error(e), []);
 
   return (
@@ -268,7 +268,6 @@ function VideoConferenceComponent(props: {
             chatMessageFormatter={formatChatMessageLinks}
             SettingsComponent={SHOW_SETTINGS_MENU ? SettingsMenu : undefined}
           ></VideoConferenceV2>
-          <DebugMode />
           <RecordingIndicator />
         </ConnectionProvider>
       </LiveKitRoom>
