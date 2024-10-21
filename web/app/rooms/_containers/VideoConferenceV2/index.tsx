@@ -38,7 +38,7 @@ import React from 'react';
  * ```
  * @public
  */
-export function VideoConferenceV2({
+export default function VideoConferenceV2({
   chatMessageFormatter,
   chatMessageDecoder,
   chatMessageEncoder,

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { PageClientImpl } from './PageClientImpl';
+import PageClient from '../_containers/PageClient';
 
 import { isVideoCodec } from '@/lib/types';
 
@@ -23,6 +23,6 @@ export default function Page({
   const hq = searchParams.hq === 'true' ? true : false;
 
   return (
-    <PageClientImpl roomName={params.roomName} region={searchParams.region} hq={hq} codec={codec} />
+    <PageClient roomName={params.roomName} region={searchParams.region} hq={hq} codec={codec} />
   );
 }

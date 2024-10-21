@@ -19,20 +19,21 @@ import { useRouter } from 'next/navigation';
 import extractTextFromPdf from 'pdf-parser-client-side';
 import React from 'react';
 
-import styles from './PageClientImpl.module.scss';
-import { ConnectionProvider } from './use-connection';
-import { VideoConferenceV2 } from './VideoConferenceV2';
+import VideoConferenceV2 from '../VideoConferenceV2';
+
+import { ConnectionProvider } from './hooks/use-connection';
+import styles from './index.module.scss';
 
 import { decodePassphrase } from '@/lib/client-utils';
-import { RecordingIndicator } from '@/lib/RecordingIndicator';
-import { SettingsMenu } from '@/lib/SettingsMenu';
 import { ConnectionDetails } from '@/lib/types';
+import RecordingIndicator from '@/modules/components/RecordingIndicator';
+import SettingsMenu from '@/modules/components/SettingsMenu';
 
 const CONN_DETAILS_ENDPOINT =
   process.env.NEXT_PUBLIC_CONN_DETAILS_ENDPOINT ?? '/api/connection-details';
 const SHOW_SETTINGS_MENU = process.env.NEXT_PUBLIC_SHOW_SETTINGS_MENU == 'true';
 
-export function PageClientImpl(props: {
+export default function PageClient(props: {
   roomName: string;
   region?: string;
   hq: boolean;

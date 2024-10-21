@@ -1,7 +1,7 @@
 import { useIsRecording } from '@livekit/components-react';
 import * as React from 'react';
 
-export function RecordingIndicator() {
+export default function RecordingIndicator() {
   const isRecording = useIsRecording();
   const [wasRecording, setWasRecording] = React.useState(false);
 

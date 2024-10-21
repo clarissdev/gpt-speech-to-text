@@ -10,7 +10,7 @@ import { useKrispNoiseFilter } from '@livekit/components-react/krisp';
 import { Track } from 'livekit-client';
 import * as React from 'react';
 
-import styles from '../styles/SettingsMenu.module.css';
+import styles from './index.module.scss';
 
 /**
  * @alpha
@@ -20,7 +20,7 @@ export interface SettingsMenuProps extends React.HTMLAttributes<HTMLDivElement> 
 /**
  * @alpha
  */
-export function SettingsMenu(props: SettingsMenuProps) {
+export default function SettingsMenu(props: SettingsMenuProps) {
   const layoutContext = useMaybeLayoutContext();
   const room = useRoomContext();
   const recordingEndpoint = process.env.NEXT_PUBLIC_LK_RECORD_ENDPOINT;
