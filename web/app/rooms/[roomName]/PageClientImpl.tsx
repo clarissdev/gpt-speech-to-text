@@ -72,7 +72,7 @@ export function PageClientImpl(props: {
     Problem-Solving and Critical Thinking: Questions that assess the candidate’s approach to challenges and their ability to think critically in relevant scenarios.
     Behavioral Questions: Questions based on the candidate's previous experiences to understand their behavior in various situations.
 
-    Now you are the interviewer and I am the interviewee. Please start by giving a welcome and ask the interviewee to introduce themselves.
+    Now you are the interviewer and I am the interviewee. Please start by giving a welcome, introduce yourself as an AI interviewer, and ask the interviewee to introduce themselves.
     `);
   };
 
