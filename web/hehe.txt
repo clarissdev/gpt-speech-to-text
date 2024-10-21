@@ -1,0 +1,53 @@
+
+> livekit-meet@0.2.0 build /Users/dinhthanh/DVT/gpt-speech-to-text/web
+> next build
+
+  ▲ Next.js 14.2.14
+  - Environments: .env.local
+
+   Creating an optimized production build ...
+ ELIFECYCLE  Command failed with exit code 1.
+
+> livekit-meet@0.2.0 build /Users/dinhthanh/DVT/gpt-speech-to-text/web
+> next build
+
+  ▲ Next.js 14.2.14
+  - Environments: .env.local
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+ ELIFECYCLE  Command failed with exit code 1.
+
+> livekit-meet@0.2.0 build /Users/dinhthanh/DVT/gpt-speech-to-text/web
+> next build
+
+  ▲ Next.js 14.2.14
+  - Environments: .env.local
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/5) ...
+   Generating static pages (1/5) 
+   Generating static pages (2/5) 
+   Generating static pages (3/5) 
+ ✓ Generating static pages (5/5)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+┌ ○ /                                    962 B          88.5 kB
+├ ○ /_not-found                          911 B          88.4 kB
+├ ƒ /api/connection-details              0 B                0 B
+└ ƒ /rooms/[roomName]                    154 kB          241 kB
++ First Load JS shared by all            87.5 kB
+  ├ chunks/317-5601231e8516bed4.js       31.6 kB
+  ├ chunks/681abe65-89f5057cb10fe7d3.js  53.7 kB
+  └ other shared chunks (total)          2.18 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

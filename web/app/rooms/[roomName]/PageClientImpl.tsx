@@ -6,7 +6,8 @@ import { RecordingIndicator } from '@/lib/RecordingIndicator';
 import { SettingsMenu } from '@/lib/SettingsMenu';
 import { ConnectionDetails } from '@/lib/types';
 import styles from './PageClientImpl.module.scss';
-import { pdfjs } from 'react-pdf';
+
+import extractTextFromPdf from 'pdf-parser-client-side';
 
 import {
   formatChatMessageLinks,
@@ -32,11 +33,6 @@ const CONN_DETAILS_ENDPOINT =
   process.env.NEXT_PUBLIC_CONN_DETAILS_ENDPOINT ?? '/api/connection-details';
 const SHOW_SETTINGS_MENU = process.env.NEXT_PUBLIC_SHOW_SETTINGS_MENU == 'true';
 
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
-  import.meta.url,
-).toString();
-
 export function PageClientImpl(props: {
   roomName: string;
   region?: string;
@@ -49,37 +45,15 @@ export function PageClientImpl(props: {
   const [resume, setResume] = React.useState('');
   const [jobDescription, setJobDescription] = React.useState<string>('');
   const [instructions, setInstructions] = React.useState('');
-
-  const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target?.files?.[0];
     if (!file) {
       setResume('');
       return;
     }
-    if (file.type !== 'application/pdf') {
-      alert('Only .pdf files are allowed!');
-      return;
-    }
-    const reader = new FileReader();
-    reader.onload = async (event) => {
-      if (!(event.target?.result instanceof ArrayBuffer)) return;
-      const typedarray = new Uint8Array(event.target.result);
-
-      const pdf = await pdfjs.getDocument({ data: typedarray }).promise;
-
-      let extractedText = '';
-      for (let i = 1; i <= pdf.numPages; i++) {
-        const page = await pdf.getPage(i);
-        const textContent = await page.getTextContent();
-        textContent.items.forEach((textItem) => {
-          if ('str' in textItem) {
-            extractedText += textItem.str + ' ';
-          }
-        });
-      }
-      setResume(extractedText);
-    };
-    reader.readAsArrayBuffer(file);
+    const text = await extractTextFromPdf(file, 'alphanumericwithspaceandpunctuationandnewline');
+    if (typeof text === 'string') setResume(text);
+    else alert('invalid parsed content');
   };
 
   const handleUploadInfo = async () => {
@@ -148,7 +122,8 @@ export function PageClientImpl(props: {
           <div className={styles.uploadcv}>
             <h1>Welcome to Your Interview Assistant!</h1>
             <p>
-              To help you prepare effectively, we need a little information from you. Please share your CV and the Job Description of the role you are applying to.
+              To help you prepare effectively, we need a little information from you. Please share
+              your CV and the Job Description of the role you are applying to.
             </p>
             <p style={{ fontWeight: '600' }}>Upload your CV here: </p>
             <input type="file" onChange={onFileChange}></input>
