@@ -89,7 +89,6 @@ export function PageClientImpl(props: {
 
   const handlePreJoinSubmit = async (values: LocalUserChoices) => {
     setPreJoinChoices(values);
-    const openaiApiKey = process.env.NEXT_PUBLIC_OPEN_AI_KEY;
     const url = new URL(CONN_DETAILS_ENDPOINT, window.location.origin);
     const connectionDetailsResp = await fetch(url.toString(), {
       method: 'POST',
@@ -101,7 +100,6 @@ export function PageClientImpl(props: {
         participantName: values.username,
         region: props.region,
         metadata: {
-          openai_api_key: openaiApiKey,
           instructions,
         },
       }),
